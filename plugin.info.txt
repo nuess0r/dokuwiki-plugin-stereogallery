@@ -1,7 +1,7 @@
-base   gallery
-author Andreas Gohr
-email  andi@splitbrain.org
-date   2023-09-03
-name   Gallery Plugin
-desc   Creates a gallery of images from a namespace or RSS/ATOM feed
-url    http://www.dokuwiki.org/plugin:gallery
+base   stereogallery
+author Christoph Zimmermann
+email  nussgipfel@brain4free.org
+date   2023-09-20
+name   Stereo-Gallery Plugin
+desc   Creates a WebXR gallery of stereo images in JPS (JPEG Stereo) format from a namespace or RSS/ATOM feed
+url    http://www.dokuwiki.org/plugin:stereogallery

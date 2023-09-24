@@ -1,9 +1,9 @@
 <?php
 
-namespace dokuwiki\plugin\gallery\classes;
+namespace dokuwiki\plugin\stereogallery\classes;
 
 /**
- * Formats the gallery
+ * Formats the stereogallery
  *
  * This is the most basic implementation. It simply adds linked thumbnails to the page. It will not look
  * good, but will work with any renderer. Specialized formatters can be created for each renderer to make
@@ -15,7 +15,7 @@ class BasicFormatter
     protected \Doku_Renderer $renderer;
 
     /**
-     * Create a new Gallery formatter
+     * Create a new StereoGallery formatter
      *
      * @param \Doku_Renderer $renderer
      * @param Options $options
@@ -27,26 +27,26 @@ class BasicFormatter
     }
 
     /**
-     * Render the whole Gallery
+     * Render the whole StereoGallery
      *
-     * @param AbstractGallery $gallery
+     * @param AbstractStereoGallery $stereogallery
      * @return void
      */
-    public function render(AbstractGallery $gallery)
+    public function render(AbstractStereoGallery $stereogallery)
     {
-        $images = $gallery->getImages();
+        $images = $stereogallery->getImages();
         foreach ($images as $image) {
             $this->renderImage($image);
         }
     }
 
     /**
-     * Render a single thumbnail image in the gallery
+     * Render a single thumbnail image in the stereogallery
      *
      * @param Image $image
      * @return void
      */
-    protected function renderImage(Image $image)
+    protected function renderImage(StereoImage $image)
     {
         [$w, $h] = $this->getThumbnailSize($image);
         $link = $image->getDetaillink() ?: $image->getSrc();
@@ -73,7 +73,7 @@ class BasicFormatter
     /**
      * Calculate the thumbnail size
      */
-    protected function getThumbnailSize(Image $image)
+    protected function getThumbnailSize(StereoImage $image)
     {
         $crop = $this->options->crop;
         if (!$image->getWidth() || !$image->getHeight()) {

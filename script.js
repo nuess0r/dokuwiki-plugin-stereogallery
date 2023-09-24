@@ -14,7 +14,7 @@ jQuery(function () {
         const glnk = document.createElement('a');
         const gbrk = document.createElement('br');
 
-        glnk.innerHTML = LANG.plugins.gallery.addgal;
+        glnk.innerHTML = LANG.plugins.stereogallery.addgal;
         glnk.style.cursor = 'pointer';
         glnk.href = '#';
 
@@ -22,7 +22,7 @@ jQuery(function () {
             const $h1 = jQuery('#media__ns');
             if (!$h1.length) return;
             const ns = $h1[0].textContent;
-            opener.insertAtCarret('wiki__text', '{{gallery>' + ns + '}}');
+            opener.insertAtCarret('wiki__text', '{{stereogallery>' + ns + '}}');
             if (!dw_mediamanager.keepopen) window.close();
         };
 
@@ -35,24 +35,24 @@ jQuery(function () {
      * Display a selected page and hide all others
      */
     (function() {
-        // hide all pages except the first one in each gallery
-        jQuery('.plugin-gallery').each(function() {
+        // hide all pages except the first one in each stereo gallery
+        jQuery('.plugin-stereogallery').each(function() {
             const $gallery = jQuery(this);
-            $gallery.find('.gallery-page').hide().eq(0).show();
-            $gallery.find('.gallery-page-selector a').eq(0).addClass('active');
+            $gallery.find('.stereogallery-page').hide().eq(0).show();
+            $gallery.find('.stereogallery-page-selector a').eq(0).addClass('active');
         });
         // attach page selector
-        jQuery('.gallery-page-selector a').click(function(e) {
+        jQuery('.stereogallery-page-selector a').click(function(e) {
             const $self = jQuery(this);
             $self.siblings().removeClass('active');
             $self.addClass('active');
-            const $gallery = $self.closest('.plugin-gallery');
-            $gallery.find('.gallery-page').hide();
+            const $gallery = $self.closest('.plugin-stereogallery');
+            $gallery.find('.stereogallery-page').hide();
             $gallery.find(e.target.hash).show();
             e.preventDefault();
         });
         // make page selector visible
-        jQuery('.gallery-page-selector').show();
+        jQuery('.stereogallery-page-selector').show();
     })();
 
     /**

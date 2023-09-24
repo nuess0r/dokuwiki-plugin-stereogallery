@@ -1,12 +1,13 @@
 <?php
 
 /**
- * Options for the gallery plugin
+ * Options for the stereogallery plugin
  *
  * @author Dmitry Baikov <dsbaikov@gmail.com>
+ * @author Christoph Zimmermann <nussgipfel@brain4free.org>
  */
 
-use dokuwiki\plugin\gallery\classes\Options;
+use dokuwiki\plugin\stereogallery\classes\Options;
 
 $meta['thumbnail_width'] = array('numeric');
 $meta['thumbnail_height'] = array('numeric');
@@ -24,6 +25,7 @@ $meta['sort'] = array(
         Options::SORT_RANDOM,
     )
 );
+/* TODO: remove lightbox when change to WebXR */
 $meta['options'] = array('multicheckbox', '_choices' => array(
     'cache',
     'crop',

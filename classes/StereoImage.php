@@ -1,12 +1,12 @@
 <?php
 
-namespace dokuwiki\plugin\gallery\classes;
+namespace dokuwiki\plugin\stereogallery\classes;
 
 use dokuwiki\Utf8\PhpString;
 
-class Image
+class StereoImage
 {
-    public const IMG_REGEX = '/\.(jpe?g|gif|png|svg|webp)$/i';
+    public const IMG_REGEX = '/\.(jpe?g|jps|gif|png|svg|webp)$/i';
 
     protected $isExternal = false;
     protected $src;

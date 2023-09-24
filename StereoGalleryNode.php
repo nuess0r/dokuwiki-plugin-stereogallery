@@ -1,16 +1,16 @@
 <?php
 
-namespace dokuwiki\plugin\gallery;
+namespace dokuwiki\plugin\stereogallery;
 
 use dokuwiki\plugin\prosemirror\parser\Node;
 
-class GalleryNode extends Node
+class StereoGalleryNode extends Node
 {
     protected $parent;
     protected $data;
 
     /**
-     * GalleryNode constructor.
+     * StereoGalleryNode constructor.
      *
      * Todo: This constructor will likely by abstracted away into a parent class or something at somepoint.
      *
@@ -30,11 +30,11 @@ class GalleryNode extends Node
      */
     public function toSyntax()
     {
-        /** @var syntax_plugin_gallery $syntax */
-        $syntax = plugin_load('syntax', 'gallery');
+        /** @var syntax_plugin_stereogallery $syntax */
+        $syntax = plugin_load('syntax', 'stereogallery');
         $defaults = $syntax->getDataFromParams($syntax->getConf('options'));
-        /** @var action_plugin_gallery_prosemirror $action */
-        $action = plugin_load('action', 'gallery_prosemirror');
+        /** @var action_plugin_stereogallery_prosemirror $action */
+        $action = plugin_load('action', 'stereogallery_prosemirror');
         $defaults = $action->cleanAttributes($defaults);
         $query = [];
         $attrs = $this->data['attrs'];
@@ -75,7 +75,7 @@ class GalleryNode extends Node
         }
         $alignLeft = $attrs['align'] === 'left' ? ' ' : '';
         $alignRight = $attrs['align'] === 'right' ? ' ' : '';
-        $result = '{{gallery>' . $alignRight . $attrs['namespace'];
+        $result = '{{stereogallery>' . $alignRight . $attrs['namespace'];
         if ($query !== []) {
             $result .= '?' . implode('&', $query);
         }

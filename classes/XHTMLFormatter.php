@@ -1,17 +1,17 @@
 <?php
 
-namespace dokuwiki\plugin\gallery\classes;
+namespace dokuwiki\plugin\stereogallery\classes;
 
 class XHTMLFormatter extends BasicFormatter
 {
     // region Main Render Functions
 
     /** @inheritdoc */
-    public function render(AbstractGallery $gallery)
+    public function render(AbstractStereoGallery $stereogallery)
     {
         $attr = [
-            'id' => 'plugin__gallery_' . $this->options->galleryID,
-            'class' => 'plugin-gallery',
+            'id' => 'plugin__stereogallery_' . $this->options->stereogalleryID,
+            'class' => 'plugin-stereogallery',
         ];
 
         switch ($this->options->align) {
@@ -30,7 +30,8 @@ class XHTMLFormatter extends BasicFormatter
         }
 
         $this->renderer->doc .= '<div ' . buildAttributes($attr, true) . '>';
-        $images = $gallery->getImages();
+        $images = $stereogallery->getImages();
+        $this->renderer->doc .= '<!-- ' . count($images) . ' -->';
         $pages = $this->paginate($images);
         foreach ($pages as $page => $images) {
             $this->renderPage($images, $page);
@@ -49,14 +50,14 @@ class XHTMLFormatter extends BasicFormatter
     {
         if (count($pages) <= 1) return;
 
-        $plugin = plugin_load('syntax', 'gallery_main');
+        $plugin = plugin_load('syntax', 'stereogallery_main');
 
-        $this->renderer->doc .= '<div class="gallery-page-selector">';
+        $this->renderer->doc .= '<div class="stereogallery-page-selector">';
         $this->renderer->doc .= '<span>' . $plugin->getLang('pages') . ' </span>';
         foreach (array_keys($pages) as $pid) {
             $this->renderer->doc .= sprintf(
-                '<a href="#gallery__%s_%s">%d</a> ',
-                $this->options->galleryID,
+                '<a href="#stereogallery__%s_%s">%d</a> ',
+                $this->options->stereogalleryID,
                 $pid,
                 $pid + 1
             );
@@ -65,7 +66,7 @@ class XHTMLFormatter extends BasicFormatter
     }
 
     /**
-     * Render the given images into a gallery page
+     * Render the given images into a stereogallery page
      *
      * @param Image[] $images
      * @param int $page The page number
@@ -74,8 +75,8 @@ class XHTMLFormatter extends BasicFormatter
     protected function renderPage($images, int $page)
     {
         $attr = [
-            'class' => 'gallery-page',
-            'id' => 'gallery__' . $this->options->galleryID . '_' . $page,
+            'class' => 'stereogallery-page',
+            'id' => 'stereogallery__' . $this->options->stereogalleryID . '_' . $page,
         ];
 
         // define the grid
@@ -103,7 +104,7 @@ class XHTMLFormatter extends BasicFormatter
     }
 
     /** @inheritdoc */
-    protected function renderImage(Image $image)
+    protected function renderImage(StereoImage $image)
     {
         global $ID;
 
@@ -136,7 +137,7 @@ class XHTMLFormatter extends BasicFormatter
 
         // figure properties
         $fig = [];
-        $fig['class'] = 'gallery-image';
+        $fig['class'] = 'stereogallery-image';
         if ($this->options->align !== Options::ALIGN_FULL) {
             $fig['style'] = 'max-width: ' . $this->options->thumbnailWidth . 'px; ';
         }
@@ -151,21 +152,21 @@ class XHTMLFormatter extends BasicFormatter
             if ($this->options->showtitle) {
                 $a = [
                     'href' => $this->getDetailLink($image),
-                    'class' => 'gallery-title',
+                    'class' => 'stereogallery-title',
                     'title' => $image->getTitle(),
                 ];
                 $html .= '<a ' . buildAttributes($a) . '>' . hsc($image->getTitle()) . '</a>';
             }
             if ($this->options->showcaption) {
                 $p = [
-                    'class' => 'gallery-caption',
+                    'class' => 'stereogallery-caption',
                 ];
                 $html .= '<div ' . buildAttributes($p) . '>' . hsc($image->getDescription()) . '</div>';
             }
             if ($this->options->showname) {
                 $a = [
                     'href' => $this->getDetailLink($image),
-                    'class' => 'gallery-filename',
+                    'class' => 'stereogallery-filename',
                     'title' => $image->getFilename(),
                 ];
                 $html .= '<a ' . buildAttributes($a) . '>' . hsc($image->getFilename()) . '</a>';
@@ -187,7 +188,7 @@ class XHTMLFormatter extends BasicFormatter
      * @param Image $image
      * @return string
      */
-    protected function getDetailLink(Image $image)
+    protected function getDetailLink(StereoImage $image)
     {
         global $ID;
 
@@ -202,10 +203,10 @@ class XHTMLFormatter extends BasicFormatter
     /**
      * Get the direct link to the image but limit it to a certain size
      *
-     * @param Image $image
+     * @param StereoImage $image
      * @return string
      */
-    protected function getLightboxLink(Image $image)
+    protected function getLightboxLink(StereoImage $image)
     {
         // use original image if no size is available
         if (!$image->getWidth() || !$image->getHeight()) {

@@ -1,19 +1,20 @@
 <?php
 
-use dokuwiki\plugin\gallery\classes\Options;
+use dokuwiki\plugin\stereogallery\classes\Options;
 
 /**
- * DokuWiki Plugin gallery (Syntax Component)
+ * DokuWiki Plugin stereogallery (Syntax Component)
  *
  * @license GPL 2 http://www.gnu.org/licenses/gpl-2.0.html
  * @author  Andreas Gohr <andi@splitbrain.org>
+ * @author Christoph Zimmermann <nussgipfel@brain4free.org>
  */
-class syntax_plugin_gallery_list extends syntax_plugin_gallery_main
+class syntax_plugin_stereogallery_list extends syntax_plugin_stereogallery_main
 {
     /** @inheritDoc */
     public function connectTo($mode)
     {
-        $this->Lexer->addSpecialPattern('<gallery.*?>.+?</gallery>', $mode, 'plugin_gallery_list');
+        $this->Lexer->addSpecialPattern('<stereogallery.*?>.+?</stereogallery>', $mode, 'plugin_stereogallery_list');
     }
 
     /** @inheritDoc */

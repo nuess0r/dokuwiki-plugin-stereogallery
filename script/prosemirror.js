@@ -8,15 +8,15 @@ jQuery(document).on('PROSEMIRROR_API_INITIALIZED', function () {
      *
      * @returns {{nodes: OrderedMap, marks: OrderedMap}} the updated nodes and marks
      */
-    function addGallerySchema(nodes, marks) {
-        nodes = nodes.addToEnd('dwplugin_gallery', {
+    function addStereoGallerySchema(nodes, marks) {
+        nodes = nodes.addToEnd('dwplugin_stereogallery', {
             content: '', // there is no content here -- it is all attributes
             marks: '',
             attrs: jQuery.extend(
                 {
                     renderedHTML: {default: null},
                 },
-                JSINFO.plugins.gallery.defaults
+                JSINFO.plugins.stereogallery.defaults
             ),
             group: 'protected_block', // may go into a block quote or list, but not into a table
         });
@@ -24,7 +24,7 @@ jQuery(document).on('PROSEMIRROR_API_INITIALIZED', function () {
         return {nodes: nodes, marks: marks};
     }
 
-    window.Prosemirror.pluginSchemas.push(addGallerySchema);
+    window.Prosemirror.pluginSchemas.push(addStereoGallerySchema);
 
     /**
      * Get the fields for the key value form with values
@@ -32,172 +32,172 @@ jQuery(document).on('PROSEMIRROR_API_INITIALIZED', function () {
      * @param {object} attrs the values to use
      * @return {Object[]} array with parameters
      */
-    function getGalleryFormFields(attrs) {
+    function getStereoGalleryFormFields(attrs) {
         return [
             {
                 name: 'namespace',
-                label: LANG.plugins.gallery.label_namespace,
+                label: LANG.plugins.stereogallery.label_namespace,
                 type: 'text',
                 value: attrs['namespace'],
             },
             {
                 name: 'thumbnailsize',
-                label: LANG.plugins.gallery.label_thumbnailsize,
+                label: LANG.plugins.stereogallery.label_thumbnailsize,
                 type: 'text',
                 pattern: '\\d+x\\d+',
-                title: LANG.plugins.gallery.pattern_hint_thumbnailsize,
+                title: LANG.plugins.stereogallery.pattern_hint_thumbnailsize,
                 value: attrs['thumbnailsize'],
             },
             {
                 name: 'imagesize',
-                label: LANG.plugins.gallery.label_imagesize,
+                label: LANG.plugins.stereogallery.label_imagesize,
                 type: 'text',
                 pattern: '\\d+X\\d+',
-                title: LANG.plugins.gallery.pattern_hint_imagesize,
+                title: LANG.plugins.stereogallery.pattern_hint_imagesize,
                 value: attrs['imagesize'],
             },
             {
                 name: 'cache',
-                label: LANG.plugins.gallery.label_cache,
+                label: LANG.plugins.stereogallery.label_cache,
                 type: 'checkbox',
                 value: '1',
                 checked: attrs['cache'],
             },
             {
                 name: 'filter',
-                label: LANG.plugins.gallery.label_filter,
+                label: LANG.plugins.stereogallery.label_filter,
                 type: 'text',
                 value: attrs['filter'],
             },
             {
                 name: 'showname',
-                label: LANG.plugins.gallery.label_showname,
+                label: LANG.plugins.stereogallery.label_showname,
                 type: 'checkbox',
                 value: '1',
                 checked: attrs['showname'],
             },
             {
                 name: 'showtitle',
-                label: LANG.plugins.gallery.label_showtitle,
+                label: LANG.plugins.stereogallery.label_showtitle,
                 type: 'checkbox',
                 value: '1',
                 checked: attrs['showtitle'],
             },
             {
                 name: 'crop',
-                label: LANG.plugins.gallery.label_crop,
+                label: LANG.plugins.stereogallery.label_crop,
                 type: 'checkbox',
                 value: '1',
                 checked: attrs['crop'],
             },
             {
                 name: 'direct',
-                label: LANG.plugins.gallery.label_direct,
+                label: LANG.plugins.stereogallery.label_direct,
                 type: 'checkbox',
                 value: '1',
                 checked: attrs['direct'],
             },
             {
                 name: 'lightbox',
-                label: LANG.plugins.gallery.label_lightbox,
+                label: LANG.plugins.stereogallery.label_lightbox,
                 type: 'checkbox',
                 value: '1',
                 checked: attrs['lightbox'],
             },
             {
                 name: 'reverse',
-                label: LANG.plugins.gallery.label_reverse,
+                label: LANG.plugins.stereogallery.label_reverse,
                 type: 'checkbox',
                 value: '1',
                 checked: attrs['reverse'],
             },
             {
                 name: 'recursive',
-                label: LANG.plugins.gallery.label_recursive,
+                label: LANG.plugins.stereogallery.label_recursive,
                 type: 'checkbox',
                 value: '1',
                 checked: attrs['recursive'],
             },
             {
                 name: 'align',
-                label: LANG.plugins.gallery.label_align_left,
+                label: LANG.plugins.stereogallery.label_align_left,
                 type: 'radio',
                 value: 'left',
                 checked: attrs['align'] === 'left',
             },
             {
                 name: 'align',
-                label: LANG.plugins.gallery.label_align_center,
+                label: LANG.plugins.stereogallery.label_align_center,
                 type: 'radio',
                 value: 'center',
                 checked: attrs['align'] === 'center',
             },
             {
                 name: 'align',
-                label: LANG.plugins.gallery.label_align_right,
+                label: LANG.plugins.stereogallery.label_align_right,
                 type: 'radio',
                 value: 'right',
                 checked: attrs['align'] === 'right',
             },
             {
                 name: 'cols',
-                label: LANG.plugins.gallery.label_cols,
+                label: LANG.plugins.stereogallery.label_cols,
                 type: 'number',
                 value: attrs['cols'],
                 min: 0,
             },
             {
                 name: 'limit',
-                label: LANG.plugins.gallery.label_limit,
+                label: LANG.plugins.stereogallery.label_limit,
                 type: 'number',
                 value: attrs['limit'],
                 min: 0,
             },
             {
                 name: 'offset',
-                label: LANG.plugins.gallery.label_offset,
+                label: LANG.plugins.stereogallery.label_offset,
                 type: 'number',
                 value: attrs['offset'],
                 min: 0,
             },
             {
                 name: 'paginate',
-                label: LANG.plugins.gallery.label_paginate,
+                label: LANG.plugins.stereogallery.label_paginate,
                 type: 'number',
                 value: attrs['paginate'],
                 min: 0,
             },
             {
                 name: 'sort',
-                label: LANG.plugins.gallery.label_sort_file,
+                label: LANG.plugins.stereogallery.label_sort_file,
                 type: 'radio',
                 value: 'filesort',
                 checked: attrs['sort'] === 'filesort',
             },
             {
                 name: 'sort',
-                label: LANG.plugins.gallery.label_sort_random,
+                label: LANG.plugins.stereogallery.label_sort_random,
                 type: 'radio',
                 value: 'random',
                 checked: attrs['sort'] === 'random',
             },
             {
                 name: 'sort',
-                label: LANG.plugins.gallery.label_sort_mod,
+                label: LANG.plugins.stereogallery.label_sort_mod,
                 type: 'radio',
                 value: 'modsort',
                 checked: attrs['sort'] === 'modsort',
             },
             {
                 name: 'sort',
-                label: LANG.plugins.gallery.label_sort_exif_date,
+                label: LANG.plugins.stereogallery.label_sort_exif_date,
                 type: 'radio',
                 value: 'datesort',
                 checked: attrs['sort'] === 'datesort',
             },
             {
                 name: 'sort',
-                label: LANG.plugins.gallery.label_sort_exif_title,
+                label: LANG.plugins.stereogallery.label_sort_exif_title,
                 type: 'radio',
                 value: 'titlesort',
                 checked: attrs['sort'] === 'titlesort',
@@ -254,12 +254,12 @@ jQuery(document).on('PROSEMIRROR_API_INITIALIZED', function () {
      * Send this node's attributes to the server to get the rendered html back
      *
      * @param {object} attrs
-     * @param {GalleryNodeView} nodeview
+     * @param {StereoGalleryNodeView} nodeview
      */
     function retrieveRenderedHTML(attrs, nodeview) {
         const ajaxEndpoint = DOKU_BASE + 'lib/exe/ajax.php';
         jQuery.post(ajaxEndpoint, {
-            'call': 'plugin_gallery_prosemirror',
+            'call': 'plugin_stereogallery_prosemirror',
             'attrs': JSON.stringify(attrs),
         }).done(function (data) {
             var newAttrs = jQuery.extend({}, attrs);
@@ -284,21 +284,21 @@ jQuery(document).on('PROSEMIRROR_API_INITIALIZED', function () {
      * @param {Node}       node
      * @param {EditorView} outerview
      * @param {function}   getPos
-     * @return {GalleryNodeView}
+     * @return {StereoGalleryNodeView}
      */
-    function dwplugin_gallery(node, outerview, getPos) {
+    function dwplugin_stereogallery(node, outerview, getPos) {
 
         // Inheritance in an IE compatible way without "class" keyword
-        function GalleryNodeView(node, outerview, getPos) {
+        function StereoGalleryNodeView(node, outerview, getPos) {
             this.form = new window.Prosemirror.classes.KeyValueForm(
-                LANG.plugins.gallery.title_dialog,
-                getGalleryFormFields(node.attrs)
+                LANG.plugins.stereogallery.title_dialog,
+                getStereoGalleryFormFields(node.attrs)
             );
             AbstractNodeView.call(this, node, outerview, getPos);
         }
 
-        GalleryNodeView.prototype = Object.create(AbstractNodeView.prototype);
-        GalleryNodeView.prototype.constructor = GalleryNodeView;
+        StereoGalleryNodeView.prototype = Object.create(AbstractNodeView.prototype);
+        StereoGalleryNodeView.prototype.constructor = StereoGalleryNodeView;
 
         /**
          * This renders the node into the editor
@@ -307,7 +307,7 @@ jQuery(document).on('PROSEMIRROR_API_INITIALIZED', function () {
          *
          * @param attrs
          */
-        GalleryNodeView.prototype.renderNode = function (attrs) {
+        StereoGalleryNodeView.prototype.renderNode = function (attrs) {
             var thisView = this;
             if (!this.dom) {
                 this.dom = document.createElement('div');
@@ -316,18 +316,18 @@ jQuery(document).on('PROSEMIRROR_API_INITIALIZED', function () {
                     thisView.form.show();
                 });
                 jQuery(this.dom)
-                    .text('GalleryPlugin')
+                    .text('StereoGalleryPlugin')
                     .append($settingsButton)
                 ;
                 this.form.on('submit', handleFormSubmit.bind(this));
             }
             if (!attrs.renderedHTML) {
                 retrieveRenderedHTML(attrs, this);
-                jQuery(this.dom).addClass('dwplugin dwplugin_gallery');
+                jQuery(this.dom).addClass('dwplugin dwplugin_stereogallery');
             } else {
                 var $renderedWrapper = jQuery(attrs.renderedHTML);
                 this.dom.innerHTML = $renderedWrapper.html();
-                this.dom.classList = $renderedWrapper.attr('class') + ' dwplugin_gallery nodeHasForm';
+                this.dom.classList = $renderedWrapper.attr('class') + ' dwplugin_stereogallery nodeHasForm';
                 jQuery(this.dom).children().css('pointer-events', 'none');
                 jQuery(this.dom).on('click', function () {
                     thisView.form.show();
@@ -343,48 +343,48 @@ jQuery(document).on('PROSEMIRROR_API_INITIALIZED', function () {
          * @param {Node} node
          * @return {boolean}
          */
-        GalleryNodeView.prototype.update = function (node) {
+        StereoGalleryNodeView.prototype.update = function (node) {
             this.node = node;
             this.renderNode(node.attrs);
 
             return true;
         };
 
-        GalleryNodeView.prototype.selectNode = function () {
+        StereoGalleryNodeView.prototype.selectNode = function () {
             this.dom.classList.add('ProseMirror-selectednode');
         };
 
-        GalleryNodeView.prototype.deselectNode = function () {
+        StereoGalleryNodeView.prototype.deselectNode = function () {
             this.dom.classList.remove('ProseMirror-selectednode');
             this.form.hide();
         };
 
-        return new GalleryNodeView(node, outerview, getPos);
+        return new StereoGalleryNodeView(node, outerview, getPos);
     }
 
-    window.Prosemirror.pluginNodeViews.dwplugin_gallery = dwplugin_gallery;
+    window.Prosemirror.pluginNodeViews.dwplugin_stereogallery = dwplugin_stereogallery;
 
     /**
      * Create MenuItemDispatcher that produces an MenuItem if available in a schema
      *
      * @constructor
      */
-    function GalleryMenuItemDispatcher() {
+    function StereoGalleryMenuItemDispatcher() {
         this.prototype = Object.create(window.Prosemirror.classes.AbstractMenuItemDispatcher.prototype);
         this.prototype.constructor = this;
 
         this.isAvailable = function (schema) {
-            return Boolean(schema.nodes.dwplugin_gallery);
+            return Boolean(schema.nodes.dwplugin_stereogallery);
         };
         this.getMenuItem = function (schema) {
             return new window.Prosemirror.classes.MenuItem({
                 command: function (state, dispatch) {
-                    var isAllowed = window.Prosemirror.commands.setBlockTypeNoAttrCheck(schema.nodes.dwplugin_gallery)(state);
+                    var isAllowed = window.Prosemirror.commands.setBlockTypeNoAttrCheck(schema.nodes.dwplugin_stereogallery)(state);
                     if (!isAllowed) {
                         return false;
                     }
                     if (dispatch) {
-                        var defaultAttributes = Object.entries(schema.nodes.dwplugin_gallery.attrs)
+                        var defaultAttributes = Object.entries(schema.nodes.dwplugin_stereogallery.attrs)
                             .reduce(
                                 function (acc, attr) {
                                     acc[attr[0]] = attr[1].default;
@@ -394,8 +394,8 @@ jQuery(document).on('PROSEMIRROR_API_INITIALIZED', function () {
                             )
                         ;
                         var form = new window.Prosemirror.classes.KeyValueForm(
-                            LANG.plugins.gallery.title_dialog,
-                            getGalleryFormFields(defaultAttributes)
+                            LANG.plugins.stereogallery.title_dialog,
+                            getStereoGalleryFormFields(defaultAttributes)
                         );
                         form.show();
 
@@ -408,12 +408,12 @@ jQuery(document).on('PROSEMIRROR_API_INITIALIZED', function () {
                                 return acc;
                             }, {});
                             form.destroy();
-                            dispatch(state.tr.replaceSelectionWith(schema.nodes.dwplugin_gallery.createChecked(newAttrs)));
+                            dispatch(state.tr.replaceSelectionWith(schema.nodes.dwplugin_stereogallery.createChecked(newAttrs)));
                         });
                     }
                     return true;
                 },
-                label: LANG.plugins.gallery.label_toolbar_button,
+                label: LANG.plugins.stereogallery.label_toolbar_button,
                 icon: (function () {
                     var puzzleSVG = '<svg viewBox="0 0 24 24"><path d="M22,16V4A2,2 0 0,0 20,2H8A2,2 0 0,0 6,4V16A2,2 0 0,0 8,18H20A2,2 0 0,0 22,16M11,12L13.03,14.71L16,11L20,16H8M2,6V20A2,2 0 0,0 4,22H18V20H4V6" /></svg>';
                     return jQuery('<span>').html(puzzleSVG).get(0);
@@ -422,5 +422,5 @@ jQuery(document).on('PROSEMIRROR_API_INITIALIZED', function () {
         };
     }
 
-    window.Prosemirror.pluginMenuItemDispatchers.push(new GalleryMenuItemDispatcher());
+    window.Prosemirror.pluginMenuItemDispatchers.push(new StereoGalleryMenuItemDispatcher());
 });

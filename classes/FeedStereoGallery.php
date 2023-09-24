@@ -1,11 +1,11 @@
 <?php
 
-namespace dokuwiki\plugin\gallery\classes;
+namespace dokuwiki\plugin\stereogallery\classes;
 
 use FeedParser;
 use SimplePie\Enclosure;
 
-class FeedGallery extends AbstractGallery
+class FeedStereoGallery extends AbstractStereoGallery
 {
     protected $feedHost;
     protected $feedPath;
@@ -22,7 +22,7 @@ class FeedGallery extends AbstractGallery
     }
 
     /**
-     * Parses the given feed and adds all images to the gallery
+     * Parses the given feed and adds all images to the stereogallery
      *
      * @param string $url
      * @return void
@@ -50,7 +50,7 @@ class FeedGallery extends AbstractGallery
             $enclosureLink = $this->makeAbsoluteUrl($enclosure->get_link());
             $detailLink = $this->makeAbsoluteUrl($item->get_link());
 
-            $image = new Image($enclosureLink);
+            $image = new StereoImage($enclosureLink);
             $image->setDetaillink($detailLink);
             $image->setTitle(htmlspecialchars_decode($enclosure->get_title() ?? '', ENT_COMPAT));
             $image->setDescription(strip_tags(htmlspecialchars_decode(

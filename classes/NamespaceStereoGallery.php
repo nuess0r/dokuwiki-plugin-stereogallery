@@ -1,8 +1,8 @@
 <?php
 
-namespace dokuwiki\plugin\gallery\classes;
+namespace dokuwiki\plugin\stereogallery\classes;
 
-class NamespaceGallery extends AbstractGallery
+class NamespaceStereoGallery extends AbstractStereoGallery
 {
     /** @inheritdoc */
     public function __construct($ns, $options)
@@ -26,7 +26,7 @@ class NamespaceGallery extends AbstractGallery
         if (media_exists($ns) && !is_dir(mediaFN($ns))) {
             // this is a single file, not a namespace
             if ($this->hasImageExtension($ns)) {
-                $this->images[] = new Image($ns);
+                $this->images[] = new StereoImage($ns);
             }
         } else {
             search(
@@ -66,7 +66,7 @@ class NamespaceGallery extends AbstractGallery
         if ($opts['filter'] && !preg_match($opts['filter'], noNS($id))) return false;
 
         // still here, add to result
-        $data[] = new Image($id);
+        $data[] = new StereoImage($id);
         return false;
     }
 }

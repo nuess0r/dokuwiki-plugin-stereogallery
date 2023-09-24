@@ -1,13 +1,13 @@
 <?php
 
-namespace dokuwiki\plugin\gallery\test;
+namespace dokuwiki\plugin\stereogallery\test;
 
 use DokuWikiTest;
 
 /**
- * General tests for the gallery plugin
+ * General tests for the stereogallery plugin
  *
- * @group plugin_gallery
+ * @group plugin_stereogallery
  * @group plugins
  */
 class GeneralTest extends DokuWikiTest
@@ -31,7 +31,7 @@ class GeneralTest extends DokuWikiTest
         $this->assertArrayHasKey('desc', $info);
         $this->assertArrayHasKey('url', $info);
 
-        $this->assertEquals('gallery', $info['base']);
+        $this->assertEquals('stereogallery', $info['base']);
         $this->assertRegExp('/^https?:\/\//', $info['url']);
         $this->assertTrue(mail_isvalid($info['email']));
         $this->assertRegExp('/^\d\d\d\d-\d\d-\d\d$/', $info['date']);
@@ -61,7 +61,7 @@ class GeneralTest extends DokuWikiTest
         $this->assertEquals(
             gettype($conf),
             gettype($meta),
-            'Both ' . DOKU_PLUGIN . 'gallery/conf/default.php and ' . DOKU_PLUGIN . 'gallery/conf/metadata.php have to exist and contain the same keys.'
+            'Both ' . DOKU_PLUGIN . 'stereogallery/conf/default.php and ' . DOKU_PLUGIN . 'stereogallery/conf/metadata.php have to exist and contain the same keys.'
         );
 
         if ($conf !== null && $meta !== null) {
@@ -69,7 +69,7 @@ class GeneralTest extends DokuWikiTest
                 $this->assertArrayHasKey(
                     $key,
                     $meta,
-                    'Key $meta[\'' . $key . '\'] missing in ' . DOKU_PLUGIN . 'gallery/conf/metadata.php'
+                    'Key $meta[\'' . $key . '\'] missing in ' . DOKU_PLUGIN . 'stereogallery/conf/metadata.php'
                 );
             }
 
@@ -77,7 +77,7 @@ class GeneralTest extends DokuWikiTest
                 $this->assertArrayHasKey(
                     $key,
                     $conf,
-                    'Key $conf[\'' . $key . '\'] missing in ' . DOKU_PLUGIN . 'gallery/conf/default.php'
+                    'Key $conf[\'' . $key . '\'] missing in ' . DOKU_PLUGIN . 'stereogallery/conf/default.php'
                 );
             }
         }

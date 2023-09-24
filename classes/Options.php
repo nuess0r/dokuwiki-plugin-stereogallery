@@ -1,6 +1,6 @@
 <?php
 
-namespace dokuwiki\plugin\gallery\classes;
+namespace dokuwiki\plugin\stereogallery\classes;
 
 class Options
 {
@@ -16,7 +16,7 @@ class Options
     public const ALIGN_CENTER = 3;
 
     // defaults
-    public string $galleryID = '';
+    public string $stereogalleryID = '';
     public int $thumbnailWidth = 120;
     public int $thumbnailHeight = 120;
     public int $lightboxWidth = 1600;
@@ -44,7 +44,7 @@ class Options
     public function __construct()
     {
         // load options from config
-        $plugin = plugin_load('syntax', 'gallery_main');
+        $plugin = plugin_load('syntax', 'stereogallery_main');
         $this->thumbnailWidth = $plugin->getConf('thumbnail_width');
         $this->thumbnailHeight = $plugin->getConf('thumbnail_height');
         $this->lightboxWidth = $plugin->getConf('image_width');

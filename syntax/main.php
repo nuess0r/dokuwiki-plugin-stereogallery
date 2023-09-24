@@ -1,23 +1,24 @@
 <?php
 
 use dokuwiki\Extension\SyntaxPlugin;
-use dokuwiki\File\PageResolver;
-use dokuwiki\plugin\gallery\classes\BasicFormatter;
-use dokuwiki\plugin\gallery\classes\FeedGallery;
-use dokuwiki\plugin\gallery\classes\ListGallery;
-use dokuwiki\plugin\gallery\classes\NamespaceGallery;
-use dokuwiki\plugin\gallery\classes\Options;
-use dokuwiki\plugin\gallery\classes\XHTMLFormatter;
+use dokuwiki\File\MediaResolver;
+use dokuwiki\plugin\stereogallery\classes\BasicFormatter;
+use dokuwiki\plugin\stereogallery\classes\FeedStereoGallery;
+use dokuwiki\plugin\stereogallery\classes\ListStereoGallery;
+use dokuwiki\plugin\stereogallery\classes\NamespaceStereoGallery;
+use dokuwiki\plugin\stereogallery\classes\Options;
+use dokuwiki\plugin\stereogallery\classes\XHTMLFormatter;
 
 /**
- * Embed an image gallery
+ * Embed an image stereogallery
  *
  * @license    GPL 2 (http://www.gnu.org/licenses/gpl.html)
  * @author     Andreas Gohr <andi@splitbrain.org>
  * @author     Joe Lapp <joe.lapp@pobox.com>
  * @author     Dave Doyle <davedoyle.canadalawbook.ca>
+ * @author Christoph Zimmermann <nussgipfel@brain4free.org>
  */
-class syntax_plugin_gallery_main extends SyntaxPlugin
+class syntax_plugin_stereogallery_main extends SyntaxPlugin
 {
     /** @inheritdoc */
     public function getType()
@@ -40,19 +41,19 @@ class syntax_plugin_gallery_main extends SyntaxPlugin
     /** @inheritdoc */
     public function connectTo($mode)
     {
-        $this->Lexer->addSpecialPattern('\{\{gallery>[^}]*\}\}', $mode, 'plugin_gallery_main');
+        $this->Lexer->addSpecialPattern('\{\{stereogallery>[^}]*\}\}', $mode, 'plugin_stereogallery_main');
     }
 
     /** @inheritdoc */
     public function handle($match, $state, $pos, Doku_Handler $handler)
     {
         global $ID;
-        $match = substr($match, 10, -2); //strip markup from start and end
+        $match = substr($match, 16, -2); //strip markup "{{stereogallery>" from start and "}}" from end
 
         $options = new Options();
 
-        // unique gallery ID
-        $options->galleryID = substr(md5($match), 0, 4);
+        // unique stereogallery ID
+        $options->stereogalleryID = substr(md5($match), 0, 4);
 
         // alignment
         if (substr($match, 0, 1) == ' ') $options->align += Options::ALIGN_RIGHT;
@@ -64,8 +65,8 @@ class syntax_plugin_gallery_main extends SyntaxPlugin
 
         // resolve relative namespace
         if (!preg_match('/^https?:\/\//i', $src)) {
-            $pageResolver = new PageResolver($ID);
-            $src = $pageResolver->resolveId($src);
+            $mediaResolver = new MediaResolver($ID);
+            $src = $mediaResolver->resolveId($src);
         }
 
         // parse parameters
@@ -83,11 +84,11 @@ class syntax_plugin_gallery_main extends SyntaxPlugin
 
         try {
             if (is_array($src)) {
-                $gallery = new ListGallery($src, $options);
+                $stereogallery = new ListStereoGallery($src, $options);
             } elseif (preg_match('/^https?:\/\//i', $src)) {
-                $gallery = new FeedGallery($src, $options);
+                $stereogallery = new FeedStereoGallery($src, $options);
             } else {
-                $gallery = new NamespaceGallery($src, $options);
+                $stereogallery = new NamespaceStereoGallery($src, $options);
             }
 
             $R->info['cache'] = $options->cache;
@@ -96,7 +97,7 @@ class syntax_plugin_gallery_main extends SyntaxPlugin
             } else {
                 $formatter = new BasicFormatter($R, $options);
             }
-            $formatter->render($gallery);
+            $formatter->render($stereogallery);
         } catch (Exception $e) {
             msg(hsc($e->getMessage()), -1);
             $R->cdata($this->getLang('fail'));

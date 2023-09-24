@@ -1,11 +1,11 @@
 <?php
 
-namespace dokuwiki\plugin\gallery\classes;
+namespace dokuwiki\plugin\stereogallery\classes;
 
 /**
- * A gallery created from a list of images
+ * A stereogallery created from a list of images
  */
-class ListGallery extends AbstractGallery
+class ListStereoGallery extends AbstractStereoGallery
 {
     /**
      * @inheritdoc
@@ -26,7 +26,7 @@ class ListGallery extends AbstractGallery
             if (!$this->hasImageExtension($img)) continue;
 
             try {
-                $image = new Image($img);
+                $image = new StereoImage($img);
             } catch (\Exception $e) {
                 // not found
                 continue;

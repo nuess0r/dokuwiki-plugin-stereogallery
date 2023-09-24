@@ -1,10 +1,10 @@
 <?php
 
-namespace dokuwiki\plugin\gallery\classes;
+namespace dokuwiki\plugin\stereogallery\classes;
 
 use dokuwiki\Utf8\Sort;
 
-abstract class AbstractGallery
+abstract class AbstractStereoGallery
 {
     /** @var Image[] */
     protected $images = [];
@@ -12,10 +12,10 @@ abstract class AbstractGallery
     protected Options $options;
 
     /**
-     * Initialize the Gallery
+     * Initialize the StereoGallery
      *
      * @param mixed $src The source from where to get the images
-     * @param Options $options Gallery configuration
+     * @param Options $options StereoGallery configuration
      */
     public function __construct($src, Options $options)
     {
@@ -30,11 +30,11 @@ abstract class AbstractGallery
      */
     public function hasImageExtension($src)
     {
-        return (bool)preg_match(Image::IMG_REGEX, $src);
+        return (bool)preg_match(StereoImage::IMG_REGEX, $src);
     }
 
     /**
-     * Get the images of this gallery
+     * Get the images of this stereogallery
      *
      * The result will be sorted, reversed and limited according to the options
      *

@@ -3,11 +3,11 @@
 use dokuwiki\Extension\ActionPlugin;
 use dokuwiki\Extension\EventHandler;
 use dokuwiki\Extension\Event;
-use dokuwiki\plugin\gallery\GalleryNode;
+use dokuwiki\plugin\stereogallery\StereoGalleryNode;
 use dokuwiki\plugin\prosemirror\parser\RootNode;
 use dokuwiki\plugin\prosemirror\schema\Node;
 
-class action_plugin_gallery_prosemirror extends ActionPlugin
+class action_plugin_stereogallery_prosemirror extends ActionPlugin
 {
     /**
      * Registers a callback function for a given event
@@ -42,20 +42,20 @@ class action_plugin_gallery_prosemirror extends ActionPlugin
     {
         global $JSINFO;
 
-        /** @var syntax_plugin_gallery $syntax */
-        $syntax = plugin_load('syntax', 'gallery');
+        /** @var syntax_plugin_stereogallery $syntax */
+        $syntax = plugin_load('syntax', 'stereogallery');
         $defaults = $syntax->getDataFromParams($syntax->getConf('options'));
         $attributes = $this->cleanAttributes($defaults);
 
         if (!isset($JSINFO['plugins'])) {
             $JSINFO['plugins'] = [];
         }
-        $JSINFO['plugins']['gallery'] = [
+        $JSINFO['plugins']['stereogallery'] = [
             'defaults' => array_map(function ($default) {
                 return ['default' => $default,];
             }, $attributes),
         ];
-        $JSINFO['plugins']['gallery']['defaults']['namespace'] = ['default' => ''];
+        $JSINFO['plugins']['stereogallery']['defaults']['namespace'] = ['default' => ''];
     }
 
 
@@ -72,13 +72,13 @@ class action_plugin_gallery_prosemirror extends ActionPlugin
      */
     public function renderFromInstructions(Event $event, $param)
     {
-        if ($event->data['name'] !== 'gallery') {
+        if ($event->data['name'] !== 'stereogallery') {
             return;
         }
         $event->preventDefault();
         $event->stopPropagation();
 
-        $node = new Node('dwplugin_gallery');
+        $node = new Node('dwplugin_stereogallery');
         // FIXME we may have to parse the namespace from the original syntax ?
         $data = $event->data['data'];
         $ns = $data['ns'];
@@ -138,13 +138,13 @@ class action_plugin_gallery_prosemirror extends ActionPlugin
      */
     public function parseToSyntax(Event $event, $param)
     {
-        if ($event->data['node']['type'] !== 'dwplugin_gallery') {
+        if ($event->data['node']['type'] !== 'dwplugin_stereogallery') {
             return;
         }
         $event->preventDefault();
         $event->stopPropagation();
 
-        $event->data['newNode'] = new GalleryNode($event->data['node'], $event->data['parent']);
+        $event->data['newNode'] = new StereoGalleryNode($event->data['node'], $event->data['parent']);
     }
 
     /**
@@ -160,14 +160,14 @@ class action_plugin_gallery_prosemirror extends ActionPlugin
      */
     public function renderAttributesToHTML(Event $event, $param)
     {
-        if ($event->data !== 'plugin_gallery_prosemirror') {
+        if ($event->data !== 'plugin_stereogallery_prosemirror') {
             return;
         }
         $event->preventDefault();
         $event->stopPropagation();
 
         global $INPUT;
-        $node = new GalleryNode(['attrs' => json_decode($INPUT->str('attrs'), true)], new RootNode([]));
+        $node = new StereoGalleryNode(['attrs' => json_decode($INPUT->str('attrs'), true)], new RootNode([]));
         $syntax = $node->toSyntax();
         $html = p_render('xhtml', p_get_instructions($syntax), $info);
         echo $html;
