@@ -97,7 +97,7 @@ class BasicFormatter
     protected function fitBoundingBox($imgWidth, $imgHeight, $bBoxWidth, $bBoxHeight)
     {
         /* use the visible area of one eye to calculate scale factor */
-        $scale = min($bBoxWidth / ($imgWidth/2), $bBoxHeight / $imgHeight);
+        $scale = min($bBoxWidth / ($imgWidth / 2), $bBoxHeight / $imgHeight);
 
         $width = round($imgWidth * $scale);
         $height = round($imgHeight * $scale);

@@ -140,7 +140,7 @@ class XHTMLFormatter extends BasicFormatter
         // figure properties
         $fig = [];
         /* Show only the left side of the stereo image. Image is bigger but in CSS the figure is set to overflow: hidden */
-        $fig['style'] =  'width: ' . round($w/2) . 'px; ';
+        $fig['style'] =  'width: ' . round($w / 2) . 'px; ';
         /*$fig['class'] = 'stereogallery-image';*/
 
         $html = '<div ' . buildAttributes($stereo, true) . '>';
