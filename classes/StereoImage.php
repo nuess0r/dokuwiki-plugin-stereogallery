@@ -6,6 +6,7 @@ use dokuwiki\Utf8\PhpString;
 
 class StereoImage
 {
+    public $viewWidth;
     public const IMG_REGEX = '/\.(jps)$/i';
 
     protected $isExternal = false;
@@ -46,9 +47,9 @@ class StereoImage
             $this->created = $jpegMeta->getField('Date.EarliestTime');
             $this->width = $jpegMeta->getField('File.Width');
             /* Viewing width of a stereo image for one eye -> half of the full image width */
-            $this->viewWidth = $this->width/2;
+            $this->viewWidth = $this->width / 2;
             $this->height = $jpegMeta->getField('File.Height');
-            $this->aspectRatio = $this->width/$this->height;
+            $this->aspectRatio = $this->width / $this->height;
         }
     }
 
@@ -142,8 +143,8 @@ class StereoImage
     public function setWidth($width)
     {
         $this->width = $width;
-        $this->viewWidth = $width/2;
-        $this->aspectRatio = $width/$this->height;
+        $this->viewWidth = $width / 2;
+        $this->aspectRatio = $width / $this->height;
     }
 
     /**
@@ -160,7 +161,7 @@ class StereoImage
     public function setHeight($height)
     {
         $this->height = $height;
-        $this->aspectRatio = $this->width/$height;
+        $this->aspectRatio = $this->width / $height;
     }
 
     /**
