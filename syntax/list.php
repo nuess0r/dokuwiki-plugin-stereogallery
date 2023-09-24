@@ -7,7 +7,7 @@ use dokuwiki\plugin\stereogallery\classes\Options;
  *
  * @license GPL 2 http://www.gnu.org/licenses/gpl-2.0.html
  * @author  Andreas Gohr <andi@splitbrain.org>
- * @author Christoph Zimmermann <nussgipfel@brain4free.org>
+ * @author  Christoph Zimmermann <nussgipfel@brain4free.org>
  */
 class syntax_plugin_stereogallery_list extends syntax_plugin_stereogallery_main
 {
@@ -20,7 +20,7 @@ class syntax_plugin_stereogallery_list extends syntax_plugin_stereogallery_main
     /** @inheritDoc */
     public function handle($match, $state, $pos, Doku_Handler $handler)
     {
-        $match = substr($match, 8, -10); //strip markup from start and end
+        $match = substr($match, 14, -16); //strip markup "<stereogallery" from start and "</stereogallery>"" from end
         [$params, $list] = sexplode('>', $match, 2);
 
         $options = new Options();
