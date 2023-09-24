@@ -38,6 +38,6 @@ class NamespaceStereoGalleryTest extends DokuWikiTest
 
         $images = $stereogallery->getImages();
         $this->assertIsArray($images);
-        $this->assertCount(3, $images);
+        $this->assertCount(4, $images);
     }
 }
