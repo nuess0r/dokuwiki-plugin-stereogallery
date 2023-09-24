@@ -31,7 +31,6 @@ class XHTMLFormatter extends BasicFormatter
 
         $this->renderer->doc .= '<div ' . buildAttributes($attr, true) . '>';
         $images = $stereogallery->getImages();
-        $this->renderer->doc .= '<!-- ' . count($images) . ' -->';
         $pages = $this->paginate($images);
         foreach ($pages as $page => $images) {
             $this->renderPage($images, $page);
@@ -110,8 +109,6 @@ class XHTMLFormatter extends BasicFormatter
 
         // thumbnail image properties
         [$w, $h] = $this->getThumbnailSize($image);
-        $w *= 2; // retina
-        $h *= 2;
         $img = [];
         $img['width'] = $w;
         $img['height'] = $h;
@@ -135,14 +132,19 @@ class XHTMLFormatter extends BasicFormatter
             $a['data-url'] = $this->getLightboxLink($image);
         }
 
+        // stereo image properties
+        $stereo = [];
+        $stereo['class'] = 'stereogallery-image';
+        $stereo['style'] =  'max-width: ' . $this->options->thumbnailWidth . 'px; ';
+
         // figure properties
         $fig = [];
-        $fig['class'] = 'stereogallery-image';
-        if ($this->options->align !== Options::ALIGN_FULL) {
-            $fig['style'] = 'max-width: ' . $this->options->thumbnailWidth . 'px; ';
-        }
+        /* Show only the left side of the stereo image. Image is bigger but in CSS the figure is set to overflow: hidden */
+        $fig['style'] =  'width: ' . round($w/2) . 'px; ';
+        /*$fig['class'] = 'stereogallery-image';*/
 
-        $html = '<figure ' . buildAttributes($fig, true) . '>';
+        $html = '<div ' . buildAttributes($stereo, true) . '>';
+        $html .= '<figure ' . buildAttributes($fig, true) . '>';
         $html .= '<a ' . buildAttributes($a, true) . '>';
         $html .= '<img ' . buildAttributes($img, true) . ' />';
         $html .= '</a>';
@@ -175,6 +177,7 @@ class XHTMLFormatter extends BasicFormatter
         }
 
         $html .= '</figure>';
+        $html .= '</div>';
         $this->renderer->doc .= $html;
     }
 

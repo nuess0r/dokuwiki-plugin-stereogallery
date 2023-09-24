@@ -5,9 +5,9 @@ namespace dokuwiki\plugin\stereogallery\classes;
 /**
  * Formats the stereogallery
  *
- * This is the most basic implementation. It simply adds linked thumbnails to the page. It will not look
- * good, but will work with any renderer. Specialized formatters can be created for each renderer to make
- * use of their special features.
+ * This is here because it was part of the orgininal DokuWiki Gallery plug-in.
+ * It generates a basic list of images with links to detail pages.
+ * No WebXR stereo view.
  */
 class BasicFormatter
 {
@@ -75,21 +75,12 @@ class BasicFormatter
      */
     protected function getThumbnailSize(StereoImage $image)
     {
-        $crop = $this->options->crop;
-        if (!$image->getWidth() || !$image->getHeight()) {
-            $crop = true;
-        }
-        if (!$crop) {
-            [$thumbWidth, $thumbHeight] = $this->fitBoundingBox(
-                $image->getWidth(),
-                $image->getHeight(),
-                $this->options->thumbnailWidth,
-                $this->options->thumbnailHeight
-            );
-        } else {
-            $thumbWidth = $this->options->thumbnailWidth;
-            $thumbHeight = $this->options->thumbnailHeight;
-        }
+        [$thumbWidth, $thumbHeight] = $this->fitBoundingBox(
+            $image->getWidth(),
+            $image->getHeight(),
+            $this->options->thumbnailWidth,
+            $this->options->thumbnailHeight
+        );
         return [$thumbWidth, $thumbHeight];
     }
 
@@ -105,7 +96,8 @@ class BasicFormatter
      */
     protected function fitBoundingBox($imgWidth, $imgHeight, $bBoxWidth, $bBoxHeight)
     {
-        $scale = min($bBoxWidth / $imgWidth, $bBoxHeight / $imgHeight);
+        /* use the visible area of one eye to calculate scale factor */
+        $scale = min($bBoxWidth / ($imgWidth/2), $bBoxHeight / $imgHeight);
 
         $width = round($imgWidth * $scale);
         $height = round($imgHeight * $scale);
