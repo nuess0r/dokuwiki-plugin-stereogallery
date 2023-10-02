@@ -1,6 +1,7 @@
 #!/bin/sh
 
 wget https://raw.githubusercontent.com/nuess0r/stereoscopic-slideshow/master/js/gallery-controller.js -O gallery-controller.js
+wget https://raw.githubusercontent.com/nuess0r/stereoscopic-slideshow/master/js/utils.js -O utils.js
 wget https://raw.githubusercontent.com/nuess0r/stereoscopic-slideshow/master/js/controllers/controls.js -O controls.js
 wget https://raw.githubusercontent.com/nuess0r/stereoscopic-slideshow/master/js/controllers/daydream-controls.js -O daydream-controls.js
 wget https://raw.githubusercontent.com/nuess0r/stereoscopic-slideshow/master/js/controllers/gearvr-controls.js -O gearvr-controls.js

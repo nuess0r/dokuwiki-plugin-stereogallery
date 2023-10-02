@@ -5,6 +5,8 @@
 /* DOKUWIKI:include aframe/aframe.min.js */
 /* DOKUWIKI:include aframe/aframe-event-set-component.min.js */
 /* DOKUWIKI:include aframe/aframe-layout-component.min.js */
+/* DOKUWIKI:include stereoscopic-slideshow/gallery-controller.js */
+/* DOKUWIKI:include stereoscopic-slideshow/utils.js */
 /* DOKUWIKI:include stereoscopic-slideshow/controls.js */
 /* DOKUWIKI:include stereoscopic-slideshow/daydream-controls.js */
 /* DOKUWIKI:include stereoscopic-slideshow/gearvr-controls.js */
@@ -14,7 +16,6 @@
 /* DOKUWIKI:include stereoscopic-slideshow/vive-controls.js */
 /* DOKUWIKI:include stereoscopic-slideshow/vive-focus-controls.js */
 /* DOKUWIKI:include stereoscopic-slideshow/windows-motion-controls.js */
-/* DOKUWIKI:include stereoscopic-slideshow/gallery-controller.js */
 
 jQuery(function () {
     /**
