@@ -98,13 +98,6 @@ jQuery(document).on('PROSEMIRROR_API_INITIALIZED', function () {
                 checked: attrs['direct'],
             },
             {
-                name: 'lightbox',
-                label: LANG.plugins.stereogallery.label_lightbox,
-                type: 'checkbox',
-                value: '1',
-                checked: attrs['lightbox'],
-            },
-            {
                 name: 'reverse',
                 label: LANG.plugins.stereogallery.label_reverse,
                 type: 'checkbox',

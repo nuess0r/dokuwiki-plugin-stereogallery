@@ -19,11 +19,10 @@ class Options
     public string $stereogalleryID = '';
     public int $thumbnailWidth = 120;
     public int $thumbnailHeight = 120;
-    public int $lightboxWidth = 1600;
-    public int $lightboxHeight = 1200;
+    public int $xrboxWidth = 1600;
+    public int $xrboxHeight = 1200;
     public int $columns = 0;
     public string $filter = '';
-    public bool $lightbox = false;
     public bool $direct = false;
     public bool $showcaption = false;
     public bool $showname = false;
@@ -47,8 +46,8 @@ class Options
         $plugin = plugin_load('syntax', 'stereogallery_main');
         $this->thumbnailWidth = $plugin->getConf('thumbnail_width');
         $this->thumbnailHeight = $plugin->getConf('thumbnail_height');
-        $this->lightboxWidth = $plugin->getConf('image_width');
-        $this->lightboxHeight = $plugin->getConf('image_height');
+        $this->xrboxWidth = $plugin->getConf('image_width');
+        $this->xrboxHeight = $plugin->getConf('image_height');
         $this->columns = $plugin->getConf('cols');
         $this->sort = $plugin->getConf('sort');
         $this->parseParameters($plugin->getConf('options'));
@@ -92,8 +91,8 @@ class Options
                 $this->paginate = (int)$match[1];
             } elseif (preg_match('/^(\d+)([xX])(\d+)$/', $param, $match)) {
                 if ($match[2] == 'X') {
-                    $this->lightboxWidth = (int)$match[1];
-                    $this->lightboxHeight = (int)$match[3];
+                    $this->xrboxWidth = (int)$match[1];
+                    $this->xrboxHeight = (int)$match[3];
                 } else {
                     $this->thumbnailWidth = (int)$match[1];
                     $this->thumbnailHeight = (int)$match[3];

@@ -1,5 +1,3 @@
-/* TODO: remove lightbox */
-/* DOKUWIKI:include_once simple-lightbox/simple-lightbox.js */
 /* DOKUWIKI:include script/prosemirror.js */
 /* DOKUWIKI:include script/tinykeys.umd.js */
 /* DOKUWIKI:include aframe/aframe.min.js */
@@ -72,18 +70,8 @@ jQuery(function () {
     })();
 
     /**
-     * Initialize the lightbox
+     * Initialize the stereoscopic-slideshow
      */
-    new SimpleLightbox("a.lightbox, a[rel^='lightbox']", {
-        sourceAttr: 'data-url',
-        captionSelector: 'self',
-        captionType: 'data',
-        captionsData: 'caption',
-        captionPosition: 'outside',
-        captionHTML: true, // we allow HTML and double escape in the formatter
-        alertError: false,
-        fileExt: false,
-    });
 });
 
 /**

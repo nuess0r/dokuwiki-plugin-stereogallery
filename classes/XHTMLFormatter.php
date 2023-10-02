@@ -120,17 +120,7 @@ class XHTMLFormatter extends BasicFormatter
         $a = [];
         $a['href'] = $this->getDetailLink($image);
         $a['title'] = $image->getTitle();
-
-        if ($this->options->lightbox) {
-            // double escape for lightbox:
-            $a['data-caption'] = implode(' &ndash; ', array_filter([
-                '<b>' . hsc($image->getTitle()) . '</b>',
-                hsc($image->getDescription())
-            ]));
-            $a['class'] = "lightbox JSnocheck";
-            $a['rel'] = 'lightbox[gal-' . substr(md5($ID), 4) . ']'; //unique ID all images on the same page
-            $a['data-url'] = $this->getLightboxLink($image);
-        }
+        $a['data-url'] = $this->getXrImageLink($image);
 
         // stereo image properties
         $stereo = [];
@@ -209,7 +199,7 @@ class XHTMLFormatter extends BasicFormatter
      * @param StereoImage $image
      * @return string
      */
-    protected function getLightboxLink(StereoImage $image)
+    protected function getXrImageLink(StereoImage $image)
     {
         // use original image if no size is available
         if (!$image->getWidth() || !$image->getHeight()) {
@@ -220,8 +210,8 @@ class XHTMLFormatter extends BasicFormatter
         [$width, $height] = $this->fitBoundingBox(
             $image->getWidth(),
             $image->getHeight(),
-            $this->options->lightboxWidth,
-            $this->options->lightboxHeight
+            $this->options->xrboxWidth,
+            $this->options->xrboxHeight
         );
 
         // no upscaling

@@ -50,7 +50,6 @@ class StereoGalleryNode extends Node
         $query[] = $this->extractFlagParam('cache', $attrs, $defaults);
         $query[] = $this->extractFlagParam('crop', $attrs, $defaults);
         $query[] = $this->extractFlagParam('direct', $attrs, $defaults);
-        $query[] = $this->extractFlagParam('lightbox', $attrs, $defaults);
         $query[] = $this->extractFlagParam('reverse', $attrs, $defaults);
         $query[] = $this->extractFlagParam('recursive', $attrs, $defaults);
         $query = array_filter($query);

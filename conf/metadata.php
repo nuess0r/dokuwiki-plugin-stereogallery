@@ -25,12 +25,11 @@ $meta['sort'] = array(
         Options::SORT_RANDOM,
     )
 );
-/* TODO: remove lightbox when change to WebXR */
+
 $meta['options'] = array('multicheckbox', '_choices' => array(
     'cache',
     'crop',
     'direct',
-    'lightbox',
     'recursive',
     'reverse',
     'showcaption',

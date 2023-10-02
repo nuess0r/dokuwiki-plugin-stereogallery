@@ -14,4 +14,4 @@ $conf['image_height'] = 1200;
 $conf['cols'] = 0;
 
 $conf['sort'] = 'file';
-$conf['options'] = 'cache, crop, lightbox'; /* TODO: remove lightbox when change to WebXR */
+$conf['options'] = 'cache, crop';

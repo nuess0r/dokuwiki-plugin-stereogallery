@@ -19,7 +19,6 @@ $lang['js']['label_showname'] = 'Show filename below thumbnails';
 $lang['js']['label_showtitle'] = 'Show the EXIF tag Headline as title below thumbnails';
 $lang['js']['label_crop'] = 'Make thumbnails the exact given thumbnail size big, cropping when needed';
 $lang['js']['label_direct'] = 'Link thumbnails with the bigger sized images not with their detail page';
-$lang['js']['label_lightbox'] = 'Show images in a fancy JavaScript modal';
 $lang['js']['label_reverse'] = 'Reverse the order of the displayed images';
 $lang['js']['label_recursive'] = 'Find images in the given namespace and all sub namespaces';
 $lang['js']['label_align_left'] = 'align left';
