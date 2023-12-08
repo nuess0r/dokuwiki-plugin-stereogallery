@@ -12,7 +12,7 @@ class action_plugin_stereogallery_prosemirror extends ActionPlugin
     /**
      * Registers a callback function for a given event
      *
-     * @param Doku_Event_Handler $controller DokuWiki's event controller object
+     * @param EventHandler $controller DokuWiki's event controller object
      *
      * @return void
      */
@@ -32,7 +32,7 @@ class action_plugin_stereogallery_prosemirror extends ActionPlugin
      *
      * Triggered by event: DOKUWIKI_STARTED
      *
-     * @param Doku_Event $event event object
+     * @param Event $event event object
      * @param mixed $param [the parameters passed as fifth argument to register_hook() when this
      *                           handler was registered]
      *
@@ -64,7 +64,7 @@ class action_plugin_stereogallery_prosemirror extends ActionPlugin
      *
      * Triggered by event: PROSEMIRROR_RENDER_PLUGIN
      *
-     * @param Doku_Event $event event object
+     * @param Event $event event object
      * @param mixed $param [the parameters passed as fifth argument to register_hook() when this
      *                           handler was registered]
      *
@@ -130,7 +130,7 @@ class action_plugin_stereogallery_prosemirror extends ActionPlugin
      *
      * Triggered by event: PROSEMIRROR_PARSE_UNKNOWN
      *
-     * @param Doku_Event $event event object
+     * @param Event $event event object
      * @param mixed $param [the parameters passed as fifth argument to register_hook() when this
      *                           handler was registered]
      *
@@ -152,7 +152,7 @@ class action_plugin_stereogallery_prosemirror extends ActionPlugin
      *
      * Triggered by event: AJAX_CALL_UNKNOQN
      *
-     * @param Doku_Event $event event object
+     * @param Event $event event object
      * @param mixed $param [the parameters passed as fifth argument to register_hook() when this
      *                           handler was registered]
      *
