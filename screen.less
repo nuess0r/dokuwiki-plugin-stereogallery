@@ -1,27 +1,28 @@
-@import "simple-lightbox/simple-lightbox.less";
-
-/** Simple Lightbox Adjustments */
-.sl-overlay {
-    background-color: #000;
-}
-
-.sl-wrapper {
-    .sl-counter,
-    .sl-close,
-    .sl-navigation button {
-        color: #fff;
-
-        &:hover {
-            color: #000;
-        }
-    }
-}
-
 /** Stereo-Gallery Styles */
 div.plugin-stereogallery {
     max-width: 100%;
     box-sizing: border-box;
     margin-bottom: 1.4em;
+
+    #assets,
+    .vr-support-resolved .vr-pending,
+    :not(.vr-support-resolved) .non-vr-only,
+    :not(.vr-support-resolved) .vr-only,
+    .vr-supported .non-vr-only,
+    .vr-unsupported .vr-only {
+        display: none; }
+
+    #scene {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0; }
+
+    #scene {
+        z-index: 1; }
+        #scene.hidden {
+            z-index: -1; }
 
     div.stereogallery-page {
         display: grid;

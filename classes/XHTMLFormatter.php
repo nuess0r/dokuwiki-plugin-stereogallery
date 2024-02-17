@@ -73,6 +73,98 @@ class XHTMLFormatter extends BasicFormatter
      */
     protected function renderPage($images, int $page)
     {
+        /* Render the A-frame scene */
+        $this->renderer->doc .= '<div id="assets"></div>
+    <a-scene id="scene" class="hidden" vr-mode-ui="enabled: false" embedded>
+      <a-entity id="head" camera position="0 0 0" stereocam="eye:left;"></a-entity>
+      <a-entity cursor="rayOrigin:mouse"></a-entity>
+
+      <!-- in VR mode, the first box is displayed only in the left eye, the second one in the right eye -->
+      <a-entity gallery-controller>
+        <a-entity id="image-loading" visible="false" position="0 0 -1" text="color: white; align: center; value: Loading image..."></a-entity>
+        <a-entity id="image-load-error" visible="false" position="0 0 -1" text="color: red; align: center; value: Error loading image"></a-entity>
+        <a-plane id="left-image"
+          material="repeat:0.5 1"
+          scale="2 1 1"
+          position="0 0 -1"
+          stereo="eye:left"
+        >
+        </a-plane>
+        <a-plane id="right-image"
+          material="repeat:0.5 1; offset: 0.5 0"
+          scale="2 1 1"
+          position="0 0 -1"
+          stereo="eye: right"
+        ></a-plane>
+        <a-entity id="description-text" position="0 -0.6 -1" scale="2 2 2"  text="align: center; wrapCount: 80;"></a-entity>
+
+        <a-plane id="previous-button" material="color: white" position="-1.1 0 -1" width="0.1" height="0.1"
+                 data-clickable data-button
+                 event-set__enter="_event: mouseenter;"
+                 event-set__leave="_event: mouseleave;"
+        >
+          <a-entity text="color: black; align: center; value: &lt;"></a-entity>
+        </a-plane>
+        <a-plane id="next-button" material="color: white" position="1.1 0 -1" width="0.1" height="0.1"
+                 data-clickable data-button
+                 event-set__enter="_event: mouseenter;"
+                 event-set__leave="_event: mouseleave;"
+        >
+          <a-entity text="color: black; align: center; value: &gt;"></a-entity>
+        </a-plane>
+
+        <a-plane id="increase-distance-button" class="distance-button vr-only" material="color: white" position="-1.1 0.6 -1" width="0.1" height="0.1"
+                 data-clickable data-button
+                 event-set__enter="_event: mouseenter;"
+                 event-set__leave="_event: mouseleave;"
+        >
+          <a-entity text="color: black; align: center; value: -"></a-entity>
+        </a-plane>
+        <a-plane id="decrease-distance-button" class="distance-button vr-only" material="color: white" position="1.1 0.6 -1" width="0.1" height="0.1"
+                 data-clickable data-button
+                 event-set__enter="_event: mouseenter;"
+                 event-set__leave="_event: mouseleave;"
+        >
+          <a-entity text="color: black; align: center; value: +"></a-entity>
+        </a-plane>
+
+        <a-plane id="exit-button" material="color: white" position="0 0.6 -1" width="0.3" height="0.1"
+                 data-clickable data-button
+                 event-set__enter="_event: mouseenter;"
+                 event-set__leave="_event: mouseleave;"
+        >
+          <a-entity text="color: black; align: center; value: Exit"></a-entity>
+        </a-plane>
+
+      </a-entity>
+
+      <a-entity laser-controls="hand: right" raycaster="objects: [data-clickable]"></a-entity>
+
+      <a-entity oculus-touch-controls="hand: left" oculus-touch-controls-left></a-entity>
+      <a-entity oculus-touch-controls="hand: right" oculus-touch-controls-right></a-entity>
+
+      <a-entity daydream-controls="hand: left" daydream-controls-left></a-entity>
+      <a-entity daydream-controls="hand: right" daydream-controls-right></a-entity>
+
+      <a-entity gearvr-controls="hand: left" gearvr-controls-left></a-entity>
+      <a-entity gearvr-controls="hand: right" gearvr-controls-right></a-entity>
+
+      <a-entity magicleap-controls="hand: left" magicleap-controls-left></a-entity>
+      <a-entity magicleap-controls="hand: right" magicleap-controls-right></a-entity>
+
+      <a-entity oculus-go-controls="hand: left" oculus-go-controls-left></a-entity>
+      <a-entity oculus-go-controls="hand: right" oculus-go-controls-right></a-entity>
+
+      <a-entity vive-controls="hand: left" vive-controls-left></a-entity>
+      <a-entity vive-controls="hand: right" vive-controls-right></a-entity>
+
+      <a-entity vive-focus-controls="hand: left" vive-focus-controls-left></a-entity>
+      <a-entity vive-focus-controls="hand: right" vive-focus-controls-right></a-entity>
+
+      <a-entity windows-motion-controls="hand: left" windows-motion-controls-left></a-entity>
+      <a-entity windows-motion-controls="hand: right" windows-motion-controls-right></a-entity>
+
+    </a-scene>';
         $attr = [
             'class' => 'stereogallery-page',
             'id' => 'stereogallery__' . $this->options->stereogalleryID . '_' . $page,
@@ -95,7 +187,12 @@ class XHTMLFormatter extends BasicFormatter
         }
         $attr['style'] = 'grid-template-columns: repeat(' . $cols . ', ' . $colwidth . ')';
 
-        $this->renderer->doc .= '<div ' . buildAttributes($attr) . '>';
+        $this->renderer->doc .= '<p>
+        <span class="vr-pending">Determining VR support...</span>
+        <span class="vr-only">Click an image to view it in stereoscopic 3D.</span>
+        <span class="non-vr-only">Your device doesn\'t support VR but you can still click an image to view it in fullscreen 2D.</span>
+         </p>';
+         $this->renderer->doc .= '<div ' . buildAttributes($attr) . '>';
         foreach ($images as $image) {
             $this->renderImage($image);
         }
