@@ -1,13 +1,13 @@
 <?php
 
-$lang['pages'] = 'Gallery Pages:';
-$lang['js']['addgal'] = 'Add namespace as gallery';
+$lang['pages'] = 'Stereo Gallery Pages:';
+$lang['js']['addgal'] = 'Add namespace as stereo gallery';
 $lang['nothingfound'] = 'No images found.';
-$lang['fail'] = 'Failed to load gallery';
+$lang['fail'] = 'Failed to load stereo gallery';
 
 
-$lang['js']['label_toolbar_button'] = 'Insert Gallery';
-$lang['js']['title_dialog'] = 'Gallery Plugin';
+$lang['js']['label_toolbar_button'] = 'Insert Stereo Gallery';
+$lang['js']['title_dialog'] = 'Stereo Gallery Plugin';
 $lang['js']['label_namespace'] = 'Namespace or RSS feed';
 $lang['js']['label_thumbnailsize'] = 'Sets the size for thumbnails';
 $lang['js']['pattern_hint_thumbnailsize'] = '<number><lowercase x><number>';
