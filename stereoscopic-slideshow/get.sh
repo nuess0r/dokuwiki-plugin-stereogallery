@@ -1,5 +1,6 @@
 #!/bin/sh
 
+wget https://raw.githubusercontent.com/nuess0r/stereoscopic-slideshow/master/js/namespace.js -O namespace.js
 wget https://raw.githubusercontent.com/nuess0r/stereoscopic-slideshow/master/js/gallery-controller.js -O gallery-controller.js
 wget https://raw.githubusercontent.com/nuess0r/stereoscopic-slideshow/master/js/utils.js -O utils.js
 wget https://raw.githubusercontent.com/nuess0r/stereoscopic-slideshow/master/js/controllers/controls.js -O controls.js
@@ -11,5 +12,7 @@ wget https://raw.githubusercontent.com/nuess0r/stereoscopic-slideshow/master/js/
 wget https://raw.githubusercontent.com/nuess0r/stereoscopic-slideshow/master/js/controllers/vive-controls.js -O vive-controls.js
 wget https://raw.githubusercontent.com/nuess0r/stereoscopic-slideshow/master/js/controllers/vive-focus-controls.js -O vive-focus-controls.js
 wget https://raw.githubusercontent.com/nuess0r/stereoscopic-slideshow/master/js/controllers/windows-motion-controls.js -O windows-motion-controls.js
+wget https://raw.githubusercontent.com/nuess0r/stereoscopic-slideshow/master/LICENSE -O LICENSE
+wget https://raw.githubusercontent.com/nuess0r/stereoscopic-slideshow/master/README.md -O README.md
 
 #sed s/\$\(/jQuery\(/ gallery-controller.js > gallery-controller-compatibility-mode.js
