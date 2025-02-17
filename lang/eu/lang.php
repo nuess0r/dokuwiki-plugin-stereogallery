@@ -5,5 +5,5 @@
  *
  * @author Zigor Astarbe <astarbe@gmail.com>
  */
-$lang['pages']                 = 'Galeria Orriak:';
+$lang['pages']                 = 'Stereo Galeria Orriak:';
 $lang['nothingfound']          = 'Irudirik ez aurkituak.';

@@ -16,4 +16,4 @@ $lang['sort_o_file']           = 'řadit podle jména souboru';
 $lang['sort_o_mod']            = 'řadit podle data souboru';
 $lang['sort_o_date']           = 'řadit podle EXIF data';
 $lang['sort_o_title']          = 'řadit podle EXIF jména';
-$lang['options']               = 'Dodatečná výchozí nastavení galerie';
+$lang['options']               = 'Dodatečná výchozí nastavení stereo galerie';

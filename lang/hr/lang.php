@@ -5,6 +5,6 @@
  *
  * @author Davor Turkalj <turki.bsc@gmail.com>
  */
-$lang['pages']                 = 'Stranice galerije:';
-$lang['js']['addgal']          = 'Dodaj imenski prostor kao galeriju';
+$lang['pages']                 = 'Stranice galerije stereo:';
+$lang['js']['addgal']          = 'Dodaj imenski prostor kao galeriju stereo';
 $lang['nothingfound']          = 'Slike nisu pronađene.';

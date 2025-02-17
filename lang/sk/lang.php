@@ -5,5 +5,5 @@
  * 
  * @author Martin Michalek <michalek.dev@gmail.com>
  */
-$lang['pages']                 = 'Stránky galérie:';
-$lang['js']['addgal']          = 'Pridaj menný priestor ako galériu';
+$lang['pages']                 = 'Stránky galérie stereo:';
+$lang['js']['addgal']          = 'Pridaj menný priestor ako galériu stereo';

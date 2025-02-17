@@ -8,6 +8,6 @@
  * @author NicolasFriedli <nicolas@theologique.ch>
  * @author Schplurtz le Déboulonné <schplurtz@laposte.net>
  */
-$lang['pages']                 = 'Pages galerie:';
-$lang['js']['addgal']          = 'Utiliser cette catégorie comme galerie';
+$lang['pages']                 = 'Pages galerie stereo:';
+$lang['js']['addgal']          = 'Utiliser cette catégorie comme galerie stereo';
 $lang['nothingfound']          = 'Aucune image trouvée.';

@@ -7,5 +7,5 @@
  * @author Robert Bogenschneider <bogi@uea.org>
  */
 $lang['pages']                 = 'Galeripaĝoj:';
-$lang['js']['addgal']          = 'Aldoni nomspacon kiel galerio';
+$lang['js']['addgal']          = 'Aldoni nomspacon kiel stereo galerio';
 $lang['nothingfound']          = 'Neniu bildo trovita';

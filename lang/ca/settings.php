@@ -15,4 +15,4 @@ $lang['sort_o_file']           = 'Ordenar per nom de l\'arxiu';
 $lang['sort_o_mod']            = 'Ordenar per data de l\'arxiu';
 $lang['sort_o_date']           = 'Ordenar per la data de l\'EXIF';
 $lang['sort_o_title']          = 'Ordenar pel títol de l\'EXIF';
-$lang['options']               = 'Opcions predeterminades de galeria adicionals';
+$lang['options']               = 'Opcions predeterminades de galeria stereo adicionals';

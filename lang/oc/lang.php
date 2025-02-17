@@ -5,6 +5,6 @@
  *
  * @author En Matt <heartattack@free.fr>
  */
-$lang['pages']                 = 'Pagina galariá :';
-$lang['js']['addgal']          = 'Ajustar los noms d\'espaci coma galariá';
+$lang['pages']                 = 'Pagina galariá stereo:';
+$lang['js']['addgal']          = 'Ajustar los noms d\'espaci coma galariá stereo';
 $lang['nothingfound']          = 'Cap d\'imatge pas trobat.';
