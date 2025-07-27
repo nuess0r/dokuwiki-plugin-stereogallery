@@ -16,7 +16,7 @@ use dokuwiki\plugin\stereogallery\classes\XHTMLFormatter;
  * @author     Andreas Gohr <andi@splitbrain.org>
  * @author     Joe Lapp <joe.lapp@pobox.com>
  * @author     Dave Doyle <davedoyle.canadalawbook.ca>
- * @author Christoph Zimmermann <nussgipfel@brain4free.org>
+ * @author     Christoph Zimmermann <nussgipfel@brain4free.org>
  */
 class syntax_plugin_stereogallery_main extends SyntaxPlugin
 {

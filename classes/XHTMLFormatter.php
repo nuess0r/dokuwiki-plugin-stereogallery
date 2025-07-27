@@ -73,9 +73,16 @@ class XHTMLFormatter extends BasicFormatter
      */
     protected function renderPage($images, int $page)
     {
+        /* Render the document object to hold the a-frame assets */
+        $test_img = '/lib/plugins/stereogallery/stereoscopic-slideshow/sbs-rl.jps';
+        $this->renderer->doc .= '<div id="assets">
+        <img id="fullsize-image" crossorigin="anonymous" src="' . $test_img . '" alt="Test image" aspect="2.97">
+    </div>';
+        /* Render the mask element. It will cover the dokuwiki page and the a-frame
+           scene is rendered in front of it*/
+        $this->renderer->doc .= '<div id="mask" class="hidden"></div>';
         /* Render the A-frame scene */
-        $this->renderer->doc .= '<div id="assets"></div>
-    <a-scene id="scene" class="hidden" vr-mode-ui="enabled: false" embedded>
+        $this->renderer->doc .= '<a-scene id="scene" class="hidden" vr-mode-ui="enabled: false" embedded>
       <a-entity id="head" camera position="0 0 0" stereocam="eye:left;"></a-entity>
       <a-entity cursor="rayOrigin:mouse"></a-entity>
 
@@ -84,14 +91,14 @@ class XHTMLFormatter extends BasicFormatter
         <a-entity id="image-loading" visible="false" position="0 0 -1" text="color: white; align: center; value: Loading image..."></a-entity>
         <a-entity id="image-load-error" visible="false" position="0 0 -1" text="color: red; align: center; value: Error loading image"></a-entity>
         <a-plane id="left-image"
-          material="repeat:0.5 1"
+          material="repeat:0.5 1; src: #fullsize-image"
           scale="2 1 1"
           position="0 0 -1"
           stereo="eye:left"
         >
         </a-plane>
         <a-plane id="right-image"
-          material="repeat:0.5 1; offset: 0.5 0"
+          material="repeat:0.5 1; offset: 0.5 0: #fullsize-image"
           scale="2 1 1"
           position="0 0 -1"
           stereo="eye: right"
@@ -217,7 +224,6 @@ class XHTMLFormatter extends BasicFormatter
         $a = [];
         $a['href'] = $this->getDetailLink($image);
         $a['title'] = $image->getTitle();
-        $a['data-url'] = $this->getXrImageLink($image);
 
         // stereo image properties
         $stereo = [];
@@ -228,7 +234,9 @@ class XHTMLFormatter extends BasicFormatter
         $fig = [];
         /* Show only the left side of the stereo image. Image is bigger but in CSS the figure is set to overflow: hidden */
         $fig['style'] =  'width: ' . round($w / 2) . 'px; ';
-        /*$fig['class'] = 'stereogallery-image';*/
+        $fig['data-url'] = $this->getXrImageLink($image);
+        $fig['description'] = $image->getTitle();
+        $fig['aspect'] = $image->getWidth() / $image->getHeight() / 2;
 
         $html = '<div ' . buildAttributes($stereo, true) . '>';
         $html .= '<figure ' . buildAttributes($fig, true) . '>';
