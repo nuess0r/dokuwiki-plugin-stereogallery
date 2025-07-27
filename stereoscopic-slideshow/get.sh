@@ -12,6 +12,7 @@ wget https://raw.githubusercontent.com/nuess0r/stereoscopic-slideshow/master/js/
 wget https://raw.githubusercontent.com/nuess0r/stereoscopic-slideshow/master/js/controllers/vive-controls.js -O vive-controls.js
 wget https://raw.githubusercontent.com/nuess0r/stereoscopic-slideshow/master/js/controllers/vive-focus-controls.js -O vive-focus-controls.js
 wget https://raw.githubusercontent.com/nuess0r/stereoscopic-slideshow/master/js/controllers/windows-motion-controls.js -O windows-motion-controls.js
+wget https://raw.githubusercontent.com/nuess0r/stereoscopic-slideshow/master/assets/sbs-rl.jps -O sbs-rl.jps
 wget https://raw.githubusercontent.com/nuess0r/stereoscopic-slideshow/master/LICENSE -O LICENSE
 wget https://raw.githubusercontent.com/nuess0r/stereoscopic-slideshow/master/README.md -O README.md
 
