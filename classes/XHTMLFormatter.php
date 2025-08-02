@@ -91,17 +91,17 @@ class XHTMLFormatter extends BasicFormatter
         <a-entity id="image-loading" visible="false" position="0 0 -1" text="color: white; align: center; value: Loading image..."></a-entity>
         <a-entity id="image-load-error" visible="false" position="0 0 -1" text="color: red; align: center; value: Error loading image"></a-entity>
         <a-plane id="left-image"
-          material="repeat:0.5 1; src: #fullsize-image"
+          material="repeat:0.5 1; offset: 0.5 0; src: #fullsize-image"
           scale="2 1 1"
           position="0 0 -1"
           stereo="eye:left"
         >
         </a-plane>
         <a-plane id="right-image"
-          material="repeat:0.5 1; offset: 0.5 0: #fullsize-image"
+          material="repeat:0.5 1; src: #fullsize-image"
           scale="2 1 1"
           position="0 0 -1"
-          stereo="eye: right"
+          stereo="eye:right"
         ></a-plane>
         <a-entity id="description-text" position="0 -0.6 -1" scale="2 2 2"  text="align: center; wrapCount: 80;"></a-entity>
 

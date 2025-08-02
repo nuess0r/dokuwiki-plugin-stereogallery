@@ -15,7 +15,7 @@ AFRAME.registerComponent("gallery-controller", (function(){
 
     let galleryController, sceneEl, leye, reye, $descriptionText, descriptionText,
         $body, $scene, $mask, $sceneEntities, $assets, $imageLoading,
-        $imageLoadError, sceneMaterial;
+        $imageLoadError, sceneMaterial, textureLoader;
 
     /*********************
      * Public properties
@@ -33,6 +33,7 @@ AFRAME.registerComponent("gallery-controller", (function(){
         Controller.el = galleryController.el;
         sceneEl = Controller.el.sceneEl;
         sceneMaterial = sceneEl.systems.material;
+        textureLoader = new THREE.TextureLoader();
         leye = jQuery('#left-image')[0];
         reye = jQuery('#right-image')[0];
         $descriptionText = jQuery('#description-text');
@@ -124,9 +125,10 @@ AFRAME.registerComponent("gallery-controller", (function(){
         if($stereoImage.length){
             let stereoImage = $stereoImage[0];
             //LOAD TEXTURE and on completion apply it on plane
-            new THREE.TextureLoader().load(stereoImage.getAttribute('src'),
+            textureLoader.load(stereoImage.getAttribute('src'),
                 texture => {
                     texture.repeat = { x: 0.5, y: 1 };
+                    texture.offset = { x: 0.5, y: 0 };
                     //Update Texture
                     leye.getObject3D("mesh").material.map = texture;
                     leye.getObject3D("mesh").material.map.needsUpdate = true;
@@ -136,10 +138,9 @@ AFRAME.registerComponent("gallery-controller", (function(){
                     console.log("An error happened for left image" + error);
                 }
             );
-            new THREE.TextureLoader().load(stereoImage.getAttribute('src'),
+            textureLoader.load(stereoImage.getAttribute('src'),
                 texture => {
                     texture.repeat = { x: 0.5, y: 1 };
-                    texture.offset = { x: 0.5, y: 0 };
                     //Update Texture
                     reye.getObject3D("mesh").material.map = texture;
                     reye.getObject3D("mesh").material.map.needsUpdate = true;
